@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import cookie from "js-cookie";
 import Error from "./components/Error";
+import { saveToken } from './utils';
 export default class Register extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +11,7 @@ export default class Register extends Component {
       email: "",
       password: "",
       password_confirmation: "",
+      selectedFile:null,
       errors: {}
     };
   }
@@ -22,14 +24,18 @@ export default class Register extends Component {
       password_confirmation: this.state.password_confirmation
     };
     axios
-      .post("http://localhost:8000/api/auth/register", data)
+      .post("http://159.65.183.33:8000/api/auth/register", data)
+      // .post("http://127.0.0.1:8000/api/auth/register", data)
+     
       .then(res => {
+        saveToken(res.data.access_token);
         cookie.set("token", res.data.access_token);
         cookie.set("user", res.data.user);
         this.props.history.push("/profile");
       })
       .catch(e => this.setState({ errors: e.response.data.errors }));
   };
+
   handleInput = e => {
     e.preventDefault();
     const name = e.target.name;

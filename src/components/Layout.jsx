@@ -4,11 +4,13 @@ import { connect } from "react-redux";
 import cookie from "js-cookie";
 
 function Layout(props) {
+
   const handleLogout = e => {
     e.preventDefault();
     cookie.remove("token");
     props.logout();
   };
+  
   return (
     <div>
       <nav className="flex justify-between">

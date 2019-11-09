@@ -3,10 +3,11 @@ import axios from "axios";
 import cookie from "js-cookie";
 import { connect } from "react-redux";
 import Error from "./components/Error";
+import { saveToken } from "./utils";
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "", errors: {} };
+    this.state = { email: "", password: "", errors: {} ,selectedFile:null};
   }
 
 
@@ -14,9 +15,12 @@ class Login extends Component {
     e.preventDefault();
     const data = { email: this.state.email, password: this.state.password };
     axios
-      .post("http://localhost:8000/api/auth/login", data)
+      .post("http://159.65.183.33:8000/api/auth/login", data)
+      // .post(" http://127.0.0.1:8000//api/auth/login", data)
       .then(res => {
+        saveToken(res.data.access_token);
         cookie.set("token", res.data.access_token);
+        // cookie.set("user", res.data.user);
         this.props.setLogin(res.data.user);
         this.props.history.push("/profile");
       })
@@ -88,7 +92,7 @@ class Login extends Component {
                   className="mt-1 p-2  mx-auto border border-gray-400 rounded cursor-pointer bg-purple-600 text-white"
                 /> */}
 
-                  <button class="block mt-2 bg-purple-600 hover:bg-teal-dark text-white  text-lg mx-auto p-1 rounded" type="submit">Login</button>
+                  <button className="block mt-2 bg-purple-600 hover:bg-teal-dark text-white  text-lg mx-auto p-1 rounded" type="submit">Login</button>
               </div>
             </div>
           </form>

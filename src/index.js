@@ -10,16 +10,19 @@ import cookie from "js-cookie";
 import jwt from "jsonwebtoken";
 
 const jwt_secret =
-  "xsrHWRQStAHvOd4Eqe7tXvtKWCgFtkOhSXmmHtLNGVEvnOWAaWGMVtIVWnB8DBjC";
+  "GBhwtQS8JnU6JEG0IXTExXLjhmMLTutNQfQUHRgNJtBDXgxXKwd0SFyHbHWpjRA3";
 
 let token = cookie.get("token");
 if (token) {
   jwt.verify(token, jwt_secret, (err, decoded) => {
     if (err) {
+      console.log("removing cookie");
       cookie.remove("token");
       token = null;
     } else {
-      if (decoded.iss !== "http://localhost:8000/api/auth/login") {
+      if (decoded.iss !== "http://159.65.183.33:8000/api/auth/login") {
+
+      // if (decoded.iss !== "http://127.0.0.1:8000/api/auth/login") {
         cookie.remove("token");
         token = null;
       }
@@ -37,7 +40,8 @@ const render = () => {
 };
 if (token) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  axios.post("http://localhost:8000/api/auth/me").then(res => {
+  axios.post("http://159.65.183.33:8000/api/auth/me").then(res => {
+  // axios.post("http://127.0.0.1:8000/api/auth/me").then(res => {
     store.dispatch({ type: "SET_LOGIN", payload: res.data });
     render();
   });

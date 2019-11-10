@@ -7,6 +7,10 @@ import Register from "./Register";
 import GuestRoute from "./components/GuestRoute";
 import AuthRoute from "./components/AuthRoute";
 import Layout from "./components/Layout";
+import CommunicationList from "./CommunicationList";
+import UpdateCommunication from "./UpdateCommunication";
+import AddCommunication from "./AddCommnuication";
+
 
 function App() {
   return (
@@ -16,6 +20,9 @@ function App() {
           <GuestRoute path="/login" component={Login} />
           <GuestRoute path="/register" component={Register} />
           <AuthRoute path="/profile" component={Profile} />
+            <GuestRoute path="/communications" component={CommunicationList} />
+            <GuestRoute path="/updatecommunication" component={UpdateCommunication} />
+            <GuestRoute path="/addcommunication" component={AddCommunication} />
         </div>
       </Layout>
     </Router>

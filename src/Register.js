@@ -37,6 +37,7 @@ export default class Register extends Component {
   };
 
   handleInput = e => {
+    console.log(e.target.name);
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
@@ -110,7 +111,7 @@ export default class Register extends Component {
                 />
               </div>
               <div className="mt-4">
-                  <button class="block mt-2 bg-purple-600 hover:bg-teal-dark text-white  text-lg mx-auto p-1 rounded" type="submit">Register</button>
+                  <button className="block mt-2 bg-purple-600 hover:bg-teal-dark text-white  text-lg mx-auto p-1 rounded" type="submit">Register</button>
               </div>
             </div>
           </form>

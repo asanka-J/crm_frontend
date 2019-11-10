@@ -7,7 +7,8 @@ import Register from "./Register";
 import GuestRoute from "./components/GuestRoute";
 import AuthRoute from "./components/AuthRoute";
 import Layout from "./components/Layout";
-import userDashboard from "./UserDashboard";
+// import userDashboard from "./UserDashboard";
+import AdminDashboard from "./Dashboard";
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
           <GuestRoute path="/login" component={Login} />
           <GuestRoute path="/register" component={Register} />
           <AuthRoute path="/profile" component={Profile} />
-          <AuthRoute path="/dashboard" component={userDashboard} exact />
+          {/* <AuthRoute path="/dashboardA" component={userDashboard} exact /> */}
+          <AuthRoute path="/dashboard" component={AdminDashboard} exact />
          
         </div>
       </Layout>

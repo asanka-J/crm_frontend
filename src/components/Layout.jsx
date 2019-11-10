@@ -12,21 +12,22 @@ function Layout(props) {
   return (
     <div>
       <nav className="flex justify-between">
-        <h1 className="py-4 mx-10">User Module</h1>
+        <h1 className="py-4 mx-10">Communication Module</h1>
         <div className="flex justify-between">
           {!props.loggedIn ? (
             <Fragment>
               <Link
                 className="m-3 py-1 px-2 bg-purple-700 text-white rounded inline-block"
-                to="/login"
+                to="/addcommunication"
               >
-                Login
+                Add  New Communication
+
               </Link>
               <Link
                 className="m-3 py-1 px-2 bg-purple-700 text-white rounded inline-block"
-                to="/register"
+                to="/communications"
               >
-                Register
+                View All Communications
               </Link>
             </Fragment>
           ) : (

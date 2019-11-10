@@ -54,6 +54,13 @@ class CommunicationList  extends Component {
                     allowOverflow: true,
                     button: true,
                     cell:row => <button onClick={()=>this.handleButtonClick(row.id,row.communication_type,row.from,row.to,row.communication_schedule_date,row.communication_schedule_time,row.description,row.alert_message)}>Update</button>
+                },
+                {
+
+                    ignoreRowClick: true,
+                    allowOverflow: true,
+                    button: true,
+                    cell:row => <button onClick={()=>this.deletecommunciations(row.id)}>Delete</button>
                 }
 
             ],
@@ -102,6 +109,21 @@ class CommunicationList  extends Component {
     };
 
 
+    deletecommunciations=(id)=>{
+
+        axios('http://35.192.126.102:8280/services/communication-delete/'+id, {
+            method: 'GET',
+            mode: 'no-cors',
+
+        }).then(response => {
+
+            alert(response.data);
+
+        })
+
+
+    }
+
 
 
 
@@ -115,13 +137,11 @@ class CommunicationList  extends Component {
             .toISOString()
             .split("T")[0];
 
-        axios('http://dev.crm.com/api/getcommunicationsbydate/'+sheduleDate, {
+        axios('http://35.192.126.102:8280/services/communication-list/'+sheduleDate, {
             method: 'GET',
             mode: 'no-cors',
 
         }).then(response => {
-
-             console.log(response.data);
 
 
             this.setState({

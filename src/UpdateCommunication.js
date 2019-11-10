@@ -158,7 +158,8 @@ class UpdateCommunication  extends Component {
                        alert_message:this.state.alert_message
                       };
 
-        axios.post("http://dev.crm.com/api/updatecommunications", data)
+
+        axios.post("http://35.192.126.102:8280/services/communication-update", data)
             .then(res => {
 
                 alert(res.data);

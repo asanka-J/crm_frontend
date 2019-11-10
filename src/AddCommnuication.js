@@ -37,7 +37,7 @@ class AddCommunication  extends Component {
             communication_schedule_time: "08:00",
             alert_message:"",
             contactlist:[],
-           communication_schedule_formatted_date: formatteddate,
+            communication_schedule_formatted_date: formatteddate,
             errors: {}
 
         };
@@ -103,7 +103,6 @@ class AddCommunication  extends Component {
 
     handleSheduleDate = date => {
 
-        alert(new Date().toISOString().slice(0,10));
 
 
         this.setState({
@@ -164,7 +163,7 @@ class AddCommunication  extends Component {
             alert_message:this.state.alert_message,
         };
 
-        axios.post("http://dev.crm.com/api/newcommnuications", data)
+        axios.post("http://35.192.126.102:8280/services/communication-create", data)
             .then(res => {
 
                 alert(res.data);
@@ -188,7 +187,7 @@ class AddCommunication  extends Component {
 
                         <div className="mt-10">
                             <div className={"mt-6"}>
-                                <label>Communication Type</label>
+                                <label>Communication Type  <span className="text-red-800">*</span> </label>
                             </div>
                             <div className={"mt-4"}>
 
@@ -202,7 +201,7 @@ class AddCommunication  extends Component {
 
                         <div className="mt-10">
                             <div className={"mt-6"}>
-                                <label>From</label>
+                                <label>From <span className="text-red-800">*</span></label>
                             </div>
                             <div className={"mt-4"}>
 
@@ -216,7 +215,7 @@ class AddCommunication  extends Component {
 
                         <div className="mt-10">
                             <div className={"mt-6"}>
-                                <label>To</label>
+                                <label>To <span className="text-red-800">*</span></label>
                             </div>
                             <div className={"mt-4"}>
 
@@ -243,7 +242,7 @@ class AddCommunication  extends Component {
 
                         <div className="mt-10">
                             <div className={"mt-6"}>
-                                <label>Schedule Date</label>
+                                <label>Schedule Date <span className="text-red-800">*</span> </label>
                             </div>
                             <div className={"mt-4"}>
 
@@ -263,7 +262,7 @@ class AddCommunication  extends Component {
 
                         <div className="mt-10">
                             <div className={"mt-6"}>
-                                <label>Schedule Time</label>
+                                <label>Schedule Time <span className="text-red-800">*</span> </label>
                             </div>
                             <div className={"mt-4"}>
 
@@ -295,7 +294,9 @@ class AddCommunication  extends Component {
 
                         </div>
 
-
+                        <div className="mt-10">
+                            <span className="text-red-800">*</span> <span> required to select</span>
+                        </div>
 
                         <div className="mt-10">
                             <div className={"mt-6"}>

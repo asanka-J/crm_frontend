@@ -17,9 +17,9 @@ function App() {
     <Router>
       <Layout>
         <div className="bg-gray-300 h-screen">
-          <GuestRoute path="/login" component={Login} />
-          <GuestRoute path="/register" component={Register} />
-          <AuthRoute path="/profile" component={Profile} />
+            <GuestRoute path="/login" component={Login} />
+            <GuestRoute path="/register" component={Register} />
+            <AuthRoute path="/profile" component={Profile} />
             <GuestRoute path="/communications" component={CommunicationList} />
             <GuestRoute path="/updatecommunication" component={UpdateCommunication} />
             <GuestRoute path="/addcommunication" component={AddCommunication} />

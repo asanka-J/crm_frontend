@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
-import loginImg from "./logo.svg";
 
 class Profile extends Component {
   constructor(props) {
@@ -23,11 +21,10 @@ class Profile extends Component {
      
     axios.patch("http://159.65.183.33:8000/api/auth/update", data)
       .then(res => {
-        // console.log(res.data);
-
-        this.props.updateUser(res.data.user);
+       
+        alert("Sucessfully Updated");
       })
-      // .catch(e => this.setState({ errors: e.response.data }));
+      .catch(e => this.setState({ errors: e.response.data }));
   };
 
   // fileChangedHandler = event => {
@@ -65,7 +62,7 @@ class Profile extends Component {
 
           <div className="flex justify-center ">
             <div className="px-6 py-4 justify-center ">
-            <img className="" src="https://tricky-photoshop.com/wp-content/uploads/2017/08/final-1.png" alt="Profile Image"/>
+            <img className="" src="https://tricky-photoshop.com/wp-content/uploads/2017/08/final-1.png" alt="Profile_Image"/>
               
             </div>
           

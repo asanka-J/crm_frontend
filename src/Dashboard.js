@@ -1,13 +1,9 @@
-import React, { Component,useEffect, useState } from 'react'
-import styled from 'styled-components'
+import React, { Component } from 'react'
 import Axios from 'axios'
-import ReactTable ,{ useTable } from 'react-table'
+import ReactTable  from 'react-table'
 import "react-table/react-table.css"
 import EditUser from './components/editUser'
 
-
-
-const Styles = {}
 
 
 export class Dashboard  extends Component {
@@ -45,7 +41,7 @@ export class Dashboard  extends Component {
 
 
     deleteRow(userID){
-      Axios.post("http://159.65.183.33:8000/api/users/delete/"+userID).then(response => {
+      Axios.post("http://159.65.183.33:8000/api/users/delete/"+userID).then(() => {
      
         this.refreshUsers();
         });
@@ -60,6 +56,7 @@ export class Dashboard  extends Component {
 
     closeModel(){
       this.setState({showModel:false})
+      this.refreshUsers()
     }
 
   render() {
@@ -71,8 +68,8 @@ export class Dashboard  extends Component {
             Header: 'User ID',
             accessor: 'id',
             filterable : true,
-            width:100,
-            maxWidth:100,
+            width:120,
+            maxWidth:150,
             minWidth:100,
           
           },
@@ -83,7 +80,7 @@ export class Dashboard  extends Component {
           },
           {
             Header: 'Email address',
-            accessor: 'email address',
+            accessor: 'email_address',
             filterable : true
           },
           {
@@ -95,15 +92,15 @@ export class Dashboard  extends Component {
             Cell: props =>{
              return(
                <button className="bg-blue-800  hover:bg-blue-500 text-white font-bold py-2 px-4 rounded" onClick={()=>{
-                this.EditRow(props.original.customer_id)
+                this.EditRow(props.original.id)
               }}
                
                >Edit</button> 
              )
             },
             sortable:false,
-            width:100,
-            maxWidth:100,
+            width:120,
+            maxWidth:150,
             minWidth:100,
           },
           {
@@ -111,13 +108,13 @@ export class Dashboard  extends Component {
             Cell: props =>{
              return(
                <button className="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded" onClick={()=>{
-                 this.deleteRow(props.original.customer_id)
+                 this.deleteRow(props.original.id)
                }}>Delete</button>
              )
             },
             sortable:false,
-            width:100,
-            maxWidth:100,
+            width:120,
+            maxWidth:150,
             minWidth:100,
 
           },
@@ -135,9 +132,11 @@ export class Dashboard  extends Component {
     }
 
       return (
-        <div>
-         <section className="flex ">
-           
+        <div className=" bg-gray-200">
+  
+         <section className="p-10">
+         {/* <div className="w-1/3" /> */}
+
             <ReactTable
               columns={columns}
               data={this.state.users}
